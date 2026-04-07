@@ -1,0 +1,15 @@
+# Java / IntelliJ
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.class
+.idea/
+*.iml
+
+# Angular / Node
+/todo-frontend/node_modules/
+/todo-frontend/dist/
+.vscode/
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db

@@ -1,0 +1,172 @@
+:host {
+  display: block;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f3f6f8;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Chia layout 2 cột */
+.app-layout {
+  display: flex;
+  height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-shadow: 0 0 40px rgba(0,0,0,0.05);
+  background: white;
+}
+
+/* --- SIDEBAR TRÁI --- */
+.sidebar {
+  width: 280px;
+  background-color: #fafbfc;
+  border-right: 1px solid #e1e4e8;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand h2 {
+  margin: 0 0 30px 10px;
+  color: #2c3e50;
+  font-size: 22px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 500;
+  color: #5c6a7a;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menu button:hover {
+  background-color: #edf2f7;
+}
+
+.menu button.active {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  font-weight: bold;
+}
+
+.badge {
+  background: #e2e8f0;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #4a5568;
+}
+
+.badge.red { background: #fee2e2; color: #ef4444; }
+.badge.green { background: #dcfce3; color: #22c55e; }
+
+/* --- KHU VỰC CHÍNH (MAIN) --- */
+.todo-container {
+  flex: 1;
+  padding: 40px 60px;
+  overflow-y: auto;
+}
+
+header h1 {
+  color: #1a202c;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+/* Khu thêm mới */
+.add-section {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.add-section input[type="text"] { flex: 2; }
+.add-section input[type="date"] { flex: 1; cursor: pointer; }
+.add-section input, .add-section button {
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.add-section button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.add-section button:hover:not(:disabled) { background: #2563eb; }
+.add-section button:disabled { background: #94a3b8; cursor: not-allowed; }
+
+/* Danh sách */
+.task-list { list-style: none; padding: 0; }
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  transition: all 0.2s;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+  cursor: pointer;
+}
+
+.task-content input[type="checkbox"] { transform: scale(1.3); }
+
+.task-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.due-date {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* Hiệu ứng trạng thái */
+.task-item.done .title { text-decoration: line-through; color: #94a3b8; }
+.task-item.overdue .due-date, .task-item.overdue .title { color: #ef4444; font-weight: 500; }
+
+.btn-delete {
+  background: transparent;
+  color: #ef4444;
+  border: 1px solid #ef4444;
+  border-radius: 6px;
+  padding: 6px 12px;
+  opacity: 0;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.task-item:hover .btn-delete { opacity: 1; }
+.btn-delete:hover { background: #fee2e2; }
+
+.empty-state { text-align: center; padding: 40px; color: #64748b; font-style: italic; }

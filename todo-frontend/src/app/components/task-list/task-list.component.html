@@ -1,0 +1,65 @@
+<div class="task-view-container">
+  <header>
+    <h1>{{ pageTitle() }}</h1>
+  </header>
+
+  <div class="add-section">
+    <div class="input-group">
+      <input 
+        type="text" 
+        [(ngModel)]="newTaskTitle" 
+        (keyup.enter)="addTask()"
+        placeholder="Bạn cần làm gì tiếp theo?" 
+      />
+      <input 
+        type="date" 
+        [(ngModel)]="dueDate" 
+        (keyup.enter)="addTask()"
+      />
+    </div>
+    <button (click)="addTask()" [disabled]="!newTaskTitle()">
+      Thêm công việc
+    </button>
+  </div>
+
+  @if (todoService.loading()) {
+    <div class="status-box loading">Đang đồng bộ dữ liệu với Java Backend...</div>
+  }
+  
+  @if (todoService.error()) {
+    <div class="status-box error">{{ todoService.error() }}</div>
+  }
+
+  <ul class="task-list">
+    @for (task of displayedTasks(); track task.id) {
+      <li class="task-item" 
+          [class.done]="task.completed" 
+          [class.is-overdue]="task.dueDate && task.dueDate < todoService.todayStr && !task.completed">
+        
+        <label class="task-content">
+          <input 
+            type="checkbox" 
+            [checked]="task.completed" 
+            (change)="updateTask(task)"
+          />
+          <div class="text-wrapper">
+            <span class="title">{{ task.title }}</span>
+            @if (task.dueDate) {
+              <span class="date-info">
+                Hạn chót: {{ task.dueDate | date:'dd/MM/yyyy' }}
+              </span>
+            }
+          </div>
+        </label>
+
+        <button class="btn-delete" (click)="deleteTask(task.id)" title="Xóa công việc">
+          <i class="icon-trash"></i> Xóa
+        </button>
+      </li>
+    } @empty {
+      <div class="empty-state">
+        <p>Chúc mừng! Không có công việc nào trong mục này.</p>
+      </div>
+    }
+  </ul>
+</div>

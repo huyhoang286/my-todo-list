@@ -1,0 +1,33 @@
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <h2>ProTask</h2>
+    </div>
+    
+    <nav class="menu">
+      <a routerLink="/tasks/all" routerLinkActive="active">
+        Tất cả <span class="badge">{{ todoService.tasks().length }}</span>
+      </a>
+      
+      <a routerLink="/tasks/today" routerLinkActive="active">
+        Hôm nay <span class="badge">{{ todoService.todayTasks().length }}</span>
+      </a>
+      
+      <a routerLink="/tasks/upcoming" routerLinkActive="active">
+        Sắp tới <span class="badge">{{ todoService.upcomingTasks().length }}</span>
+      </a>
+      
+      <a routerLink="/tasks/overdue" routerLinkActive="active" class="danger-link">
+        Quá hạn <span class="badge red">{{ todoService.overdueTasks().length }}</span>
+      </a>
+      
+      <a routerLink="/tasks/completed" routerLinkActive="active">
+        Đã xong <span class="badge green">{{ todoService.completedTasks().length }}</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
